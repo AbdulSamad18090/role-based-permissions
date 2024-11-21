@@ -1,0 +1,249 @@
+[
+  {
+    "roleId": 1,
+    "role": "RFI Creator",
+    "permissions": {
+      "menuPermission": ["1", "2.1", "3.2.1", "2", "2.1.1"],
+      "formPermission": [
+        {
+          "pageId": "page1",
+          "pagePath": "/page1",
+          "tabs": [
+            {
+              "tabId": 1,
+              "view": true,
+              "sections": [
+                {
+                  "sectionId": 1,
+                  "view": true,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "permissionType": ["Edit"]
+                    }
+                  ]
+                },
+                {
+                  "sectionId": 2,
+                  "view": false,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "permissionType": ["Hidden"]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabId": 2,
+              "view": true,
+              "sections": [
+                {
+                  "sectionId": 1,
+                  "view": true,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "permissionType": ["Hidden"]
+                    }
+                  ]
+                },
+                {
+                  "sectionId": 2,
+                  "view": true,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "permissionType": ["Hidden"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "reportPermission": [
+        {
+          "reportId": "Report1",
+          "reportName": "Report 1"
+        }
+      ],
+      "workflowPermission": []
+    }
+  },
+  {
+    "roleId": 2,
+    "role": "RFI Reviewer",
+    "permissions": {
+      "menuPermission": ["1", "2.2", "3.1"],
+      "formPermission": [
+        {
+          "pageId": "page1",
+          "pagePath": "/page1",
+          "pageName": "RFI Review Form",
+          "tabs": [
+            {
+              "tabId": 1,
+              "tabName": "Review Tab 1",
+              "view": true,
+              "sections": [
+                {
+                  "sectionId": 1,
+                  "sectionName": "Review Section 1",
+                  "sectionDescription": "Description for Review Section 1",
+                  "view": true,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "fieldName": "Review Field 1",
+                      "fieldType": "textbox",
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "fieldName": "Review Field 2",
+                      "fieldType": "checkbox",
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "fieldName": "Review Field 3",
+                      "fieldType": "calendar",
+                      "permissionType": ["Edit"]
+                    }
+                  ]
+                },
+                {
+                  "sectionId": 2,
+                  "sectionName": "Review Section 2",
+                  "sectionDescription": "Description for Review Section 2",
+                  "view": false,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "fieldName": "Review Field 1",
+                      "fieldType": "textbox",
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "fieldName": "Review Field 2",
+                      "fieldType": "textbox",
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "fieldName": "Review Field 3",
+                      "fieldType": "textbox",
+                      "permissionType": ["Hidden"]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabId": 2,
+              "tabName": "Review Tab 2",
+              "view": false,
+              "sections": [
+                {
+                  "sectionId": 1,
+                  "sectionName": "Review Section 1",
+                  "sectionDescription": "Description for Review Section 1",
+                  "view": true,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "fieldName": "Review Field 1",
+                      "fieldType": "browse",
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "fieldName": "Review Field 2",
+                      "fieldType": "textbox",
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "fieldName": "Review Field 3",
+                      "fieldType": "textbox",
+                      "permissionType": ["Hidden"]
+                    }
+                  ]
+                },
+                {
+                  "sectionId": 2,
+                  "sectionName": "Review Section 2",
+                  "sectionDescription": "Description for Review Section 2",
+                  "view": true,
+                  "fields": [
+                    {
+                      "fieldId": 1,
+                      "fieldName": "Review Field 1",
+                      "fieldType": "textbox",
+                      "permissionType": ["Edit"]
+                    },
+                    {
+                      "fieldId": 2,
+                      "fieldName": "Review Field 2",
+                      "fieldType": "textbox",
+                      "permissionType": ["Readonly"]
+                    },
+                    {
+                      "fieldId": 3,
+                      "fieldName": "Review Field 3",
+                      "fieldType": "textbox",
+                      "permissionType": ["Hidden"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "reportPermission": [
+        {
+          "reportId": "Report2",
+          "reportName": "Report 2"
+        }
+      ],
+      "workflowPermission": []
+    }
+  }
+]

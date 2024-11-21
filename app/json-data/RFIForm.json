@@ -1,0 +1,121 @@
+{
+  "pageId": "page1",
+  "pageName": "RFI Form",
+  "pageDescription": "On this page we enter the RFI",
+  "tabs": [
+    {
+      "tabId": 1,
+      "tabName": "General Information",
+      "tabDescription": "We enter the RFI basic information in it",
+      "sections": [
+        {
+          "sectionId": 1,
+          "sectionName": "Basic Info",
+          "sectionDescription": "Enter only contact information in this section",
+          "fields": [
+            {
+              "fieldId": 1,
+              "fieldName": "Name",
+              "fieldElement": "textbox",
+              "permissionType": ["Edit"]
+            },
+            {
+              "fieldId": 2,
+              "fieldName": "Age",
+              "fieldElement": "textbox",
+              "permissionType": ["Readonly"]
+            },
+            {
+              "fieldId": 3,
+              "fieldName": "Date of Birth",
+              "fieldElement": "calendar",
+              "permissionType": ["Readonly"]
+            }
+          ]
+        },
+        {
+          "sectionId": 2,
+          "sectionName": "Advance Info",
+          "sectionDescription": "Enter additional information in this section",
+          "fields": [
+            {
+              "fieldId": 1,
+              "fieldName": "Address",
+              "fieldElement": "textbox",
+              "permissionType": ["Edit"]
+            },
+            {
+              "fieldId": 2,
+              "fieldName": "Gender",
+              "fieldElement": "radio",
+              "permissionType": ["Readonly"]
+            },
+            {
+              "fieldId": 3,
+              "fieldName": "File",
+              "fieldElement": "browse",
+              "permissionType": ["Readonly"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tabId": 2,
+      "tabName": "Additional Info",
+      "tabDescription": "More information related to the RFI",
+      "sections": [
+        {
+          "sectionId": 1,
+          "sectionName": "Basic Info",
+          "sectionDescription": "Enter the basic information in this section",
+          "fields": [
+            {
+              "fieldId": 1,
+              "fieldName": "Name",
+              "fieldElement": "textbox",
+              "permissionType": ["Edit"]
+            },
+            {
+              "fieldId": 2,
+              "fieldName": "Age",
+              "fieldElement": "radio",
+              "permissionType": ["Readonly"]
+            },
+            {
+              "fieldId": 3,
+              "fieldName": "Date of Birth",
+              "fieldElement": "calendar",
+              "permissionType": ["Readonly"]
+            }
+          ]
+        },
+        {
+          "sectionId": 2,
+          "sectionName": "Advanced Info",
+          "sectionDescription": "Enter further advanced details in this section",
+          "fields": [
+            {
+              "fieldId": 1,
+              "fieldName": "Address",
+              "fieldElement": "textbox",
+              "permissionType": ["Edit"]
+            },
+            {
+              "fieldId": 2,
+              "fieldName": "Gender",
+              "fieldElement": "radio",
+              "permissionType": ["Readonly"]
+            },
+            {
+              "fieldId": 3,
+              "fieldName": "File",
+              "fieldElement": "browse",
+              "permissionType": ["Readonly"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
