@@ -18,14 +18,97 @@ export async function GET(req) {
               $match: {
                 $expr: {
                   $or: [
-                    { $in: ["$menuId", "$$menuPermissions"] }, // Match Menu.menuId
+                    { $in: ["$menuId", "$$menuPermissions"] }, // Match top-level Menu.menuId
                     {
-                      $in: [
-                        "$$menuPermissions",
-                        { $map: { input: "$submenus", as: "submenu", in: "$$submenu.id" } },
+                      $gt: [
+                        {
+                          $size: {
+                            $filter: {
+                              input: "$submenus",
+                              as: "submenu",
+                              cond: {
+                                $or: [
+                                  { $in: ["$$submenu.id", "$$menuPermissions"] }, // Match submenu.id
+                                  {
+                                    $gt: [
+                                      {
+                                        $size: {
+                                          $filter: {
+                                            input: "$$submenu.submenus",
+                                            as: "subsubmenu",
+                                            cond: { $in: ["$$subsubmenu.id", "$$menuPermissions"] }, // Match subsubmenu.id
+                                          },
+                                        },
+                                      },
+                                      0,
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          },
+                        },
+                        0,
                       ],
-                    }, // Match Menu.submenus.id
+                    }, // Check if any nested submenus match
                   ],
+                },
+              },
+            },
+            // Step 2: Filter submenus and sub-submenus
+            {
+              $addFields: {
+                submenus: {
+                  $map: {
+                    input: {
+                      $filter: {
+                        input: "$submenus",
+                        as: "submenu",
+                        cond: {
+                          $or: [
+                            { $in: ["$$submenu.id", "$$menuPermissions"] },
+                            {
+                              $gt: [
+                                {
+                                  $size: {
+                                    $filter: {
+                                      input: "$$submenu.submenus",
+                                      as: "subsubmenu",
+                                      cond: { $in: ["$$subsubmenu.id", "$$menuPermissions"] },
+                                    },
+                                  },
+                                },
+                                0,
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                    },
+                    as: "filteredSubmenu",
+                    in: {
+                      id: "$$filteredSubmenu.id",
+                      name: "$$filteredSubmenu.name",
+                      path: "$$filteredSubmenu.path",
+                      submenus: {
+                        $map: {
+                          input: {
+                            $filter: {
+                              input: "$$filteredSubmenu.submenus",
+                              as: "subsubmenu",
+                              cond: { $in: ["$$subsubmenu.id", "$$menuPermissions"] },
+                            },
+                          },
+                          as: "filteredSubsubmenu",
+                          in: {
+                            id: "$$filteredSubsubmenu.id",
+                            name: "$$filteredSubsubmenu.name",
+                            path: "$$filteredSubsubmenu.path",
+                          },
+                        },
+                      },
+                    },
+                  },
                 },
               },
             },
