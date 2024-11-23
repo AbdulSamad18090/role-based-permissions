@@ -33,7 +33,7 @@
                 },
                 {
                   "sectionId": 2,
-                  "view": false,
+                  "view": true,
                   "fields": [
                     {
                       "fieldId": 1,
