@@ -42,7 +42,7 @@ export async function GET(req) {
           as: "pageDetails", // Output array
         },
       },
-      // Step 3: Optionally project fields to return only relevant data
+      // Step 3: Project fields to include all permissions and joined details
       {
         $project: {
           _id: 1,
@@ -50,6 +50,8 @@ export async function GET(req) {
           role: 1,
           "permissions.menuPermission": 1,
           "permissions.formPermission": 1,
+          "permissions.reportPermission": 1, // Include reportPermission
+          "permissions.workflowPermission": 1, // Include workflowPermission
           menuDetails: 1,
           pageDetails: 1,
         },
