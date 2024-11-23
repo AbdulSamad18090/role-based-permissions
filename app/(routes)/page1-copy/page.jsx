@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 const Form = () => {
-  const [formData, setFormData] = useState(null);
-  const [roles, setRoles] = useState([]);
+  const [formData, setFormData] = useState(null); // formData = pageDetails
   const [activeTab, setActiveTab] = useState(0);
 
   const user = {
@@ -16,61 +15,63 @@ const Form = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch Roles and RFIForm dynamically
-        const rolesRes = await fetch("/api/roles", { cache: "no-store" });
-        const rolesData = await rolesRes.json();
-        const formRes = await fetch("/api/rfiForm", { cache: "no-store" });
-        const formData = await formRes.json();
+        // Fetch Role and its permissions
+        const roleRes = await fetch(`/api/role/get/${user.role}`, {
+          cache: "no-store",
+        });
+        const roleData = await roleRes.json();
 
-        setRoles(rolesData);
+        // Extract pageDetails for the specific role
+        const pageDetails = roleData.pageDetails;
 
-        // Find user role and permissions
-        const role = rolesData.find((role) => role.roleId === user.role);
-        if (role) {
-          const formPermissions = role.permissions.formPermission.find(
-            (form) => form.pageId === "page1"
-          );
+        // Get form permissions for this role
+        const formPermissions = roleData.permissions.formPermission.find(
+          (form) => form.pageId === "page1"
+        );
 
-          if (formPermissions) {
-            setFormData({
-              ...formData,
-              tabs: formData.tabs
-                .map((tab) => {
-                  const permissionTab = formPermissions.tabs.find(
-                    (t) => t.tabId === tab.tabId
-                  );
-                  return permissionTab?.view
-                    ? {
-                        ...tab,
-                        sections: tab.sections
-                          .map((section) => {
-                            const permissionSection = permissionTab.sections.find(
-                              (s) => s.sectionId === section.sectionId
-                            );
-                            return permissionSection?.view
-                              ? {
-                                  ...section,
-                                  fields: section.fields.map((field) => {
-                                    const permissionField =
-                                      permissionSection.fields.find(
-                                        (f) => f.fieldId === field.fieldId
-                                      );
-                                    return {
-                                      ...field,
-                                      permissionType:
-                                        permissionField?.permissionType || [],
-                                    };
-                                  }),
-                                }
-                              : null;
-                          })
-                          .filter(Boolean),
-                      }
-                    : null;
-                })
-                .filter(Boolean),
-            });
-          }
+        if (formPermissions) {
+          // Filter pageDetails based on permissions
+          const filteredPageDetails = {
+            ...pageDetails.find((page) => page.pageId === "page1"),
+            tabs: pageDetails
+              .find((page) => page.pageId === "page1")
+              ?.tabs.map((tab) => {
+                const permissionTab = formPermissions.tabs.find(
+                  (t) => t.tabId === tab.tabId
+                );
+                return permissionTab?.view
+                  ? {
+                      ...tab,
+                      sections: tab.sections
+                        .map((section) => {
+                          const permissionSection = permissionTab.sections.find(
+                            (s) => s.sectionId === section.sectionId
+                          );
+                          return permissionSection?.view
+                            ? {
+                                ...section,
+                                fields: section.fields.map((field) => {
+                                  const permissionField =
+                                    permissionSection.fields.find(
+                                      (f) => f.fieldId === field.fieldId
+                                    );
+                                  return {
+                                    ...field,
+                                    permissionType:
+                                      permissionField?.permissionType || [],
+                                  };
+                                }),
+                              }
+                            : null;
+                        })
+                        .filter(Boolean),
+                    }
+                  : null;
+              })
+              .filter(Boolean),
+          };
+
+          setFormData(filteredPageDetails);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
