@@ -16,7 +16,7 @@ const Form = () => {
     async function fetchData() {
       try {
         // Fetch Role and its permissions
-        const roleRes = await fetch(`/api/role/get/${user.role}`, {
+        const roleRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/role/get/${user.role}`, {
           cache: "no-store",
         });
         const roleData = await roleRes.json();

@@ -10,7 +10,7 @@ const Sidebar = ({ user }) => {
   useEffect(() => {
     async function fetchRoleData() {
       try {
-        const response = await fetch(`/api/role/get/${user.role}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/role/get/${user.role}`, {
           cache: "no-store",
         });
         const roleData = await response.json();
