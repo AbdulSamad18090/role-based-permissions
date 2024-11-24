@@ -10,13 +10,22 @@ const Sidebar = ({ user }) => {
   useEffect(() => {
     async function fetchRoleData() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/role/get/${user.role}`, {
-          cache: "no-store",
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/role/get/${user.role}`,
+          { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`API Error: ${response.status} ${errorText}`);
+        }
+
         const roleData = await response.json();
 
-        if (roleData?.menuDetails) {
+        if (Array.isArray(roleData?.menuDetails)) {
           setMenuDetails(roleData.menuDetails);
+        } else {
+          throw new Error("menuDetails is not an array");
         }
       } catch (error) {
         console.error("Error fetching role data:", error);
