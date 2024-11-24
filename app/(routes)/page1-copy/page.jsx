@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 const Form = () => {
-  const [formData, setFormData] = useState(null); // formData = pageDetails
+  const [formData, setFormData] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
 
   const user = {
