@@ -84,7 +84,7 @@ export async function generateStaticParams() {
   // If the page has dynamic parameters, you would return an array of dynamic params
   // For example, if the page needs to be generated for specific roles or ids, you can specify those here.
   return [
-    { pageId: "page1" }, // This will trigger the ISR for this specific page
+    { pageId: "page1-copy" }, // This will trigger the ISR for this specific page
   ];
 }
 
